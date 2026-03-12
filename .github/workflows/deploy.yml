@@ -39,6 +39,12 @@ jobs:
             --base /slidev-exam-ppts/slides/cie-9700/ \
             --out ../../dist/slides/cie-9700
 
+      - name: Build CIE Biology 9700 Chapter 2 slides
+        run: |
+          npx slidev build slides/cie-9700/chapter-2/slides.md \
+            --base /slidev-exam-ppts/slides/cie-9700/chapter-2/ \
+            --out ../../../dist/slides/cie-9700/chapter-2
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

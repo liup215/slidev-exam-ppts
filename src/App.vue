@@ -8,20 +8,28 @@
     <main>
       <div v-for="board in examBoards" :key="board.id" class="board-section">
         <h2>{{ board.name }}</h2>
-        <div class="syllabi-grid">
-          <a
-            v-for="syllabus in board.syllabi"
-            :key="syllabus.id"
-            :href="syllabus.url"
-            class="syllabus-card"
-          >
-            <div class="card-icon">{{ syllabus.icon }}</div>
-            <div class="card-content">
-              <h3>{{ syllabus.code }}</h3>
-              <p>{{ syllabus.name }}</p>
-              <span class="chapters">{{ syllabus.chapters }} 章节</span>
+        <div v-for="syllabus in board.syllabi" :key="syllabus.id" class="syllabus-section">
+          <div class="syllabus-header">
+            <span class="syllabus-icon">{{ syllabus.icon }}</span>
+            <div>
+              <h3 class="syllabus-title">{{ syllabus.code }} — {{ syllabus.name }}</h3>
+              <span class="chapters">{{ syllabus.chapters.length }} 章节</span>
             </div>
-          </a>
+          </div>
+          <div class="chapters-grid">
+            <a
+              v-for="chapter in syllabus.chapters"
+              :key="chapter.id"
+              :href="chapter.url"
+              class="chapter-card"
+            >
+              <div class="chapter-number">Ch.{{ chapter.number }}</div>
+              <div class="chapter-content">
+                <h4>{{ chapter.title }}</h4>
+                <p>{{ chapter.subtitle }}</p>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </main>
@@ -33,13 +41,20 @@
 </template>
 
 <script setup lang="ts">
+interface Chapter {
+  id: string
+  number: number
+  title: string
+  subtitle: string
+  url: string
+}
+
 interface Syllabus {
   id: string
   code: string
   name: string
   icon: string
-  chapters: number
-  url: string
+  chapters: Chapter[]
 }
 
 interface ExamBoard {
@@ -60,8 +75,22 @@ const examBoards: ExamBoard[] = [
         code: '9700',
         name: 'AS & A Level Biology',
         icon: '🧬',
-        chapters: 1,
-        url: `${base}slides/cie-9700/`,
+        chapters: [
+          {
+            id: 'cie-9700-ch1',
+            number: 1,
+            title: '细胞结构',
+            subtitle: 'Cell Structure',
+            url: `${base}slides/cie-9700/`,
+          },
+          {
+            id: 'cie-9700-ch2',
+            number: 2,
+            title: '生物分子',
+            subtitle: 'Biological Molecules',
+            url: `${base}slides/cie-9700/chapter-2/`,
+          },
+        ],
       },
     ],
   },
@@ -116,45 +145,26 @@ header h1 {
   border-bottom: 2px solid #e0e0e0;
 }
 
-.syllabi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
+.syllabus-section {
+  margin-bottom: 2rem;
 }
 
-.syllabus-card {
+.syllabus-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  background: white;
-  border-radius: 12px;
-  padding: 1.25rem;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-.syllabus-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-}
-
-.card-icon {
-  font-size: 2.5rem;
+.syllabus-icon {
+  font-size: 2rem;
   flex-shrink: 0;
 }
 
-.card-content h3 {
+.syllabus-title {
   font-size: 1.1rem;
-  color: #1a73e8;
-  margin-bottom: 0.2rem;
-}
-
-.card-content p {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 0.4rem;
+  color: #333;
+  margin-bottom: 0.25rem;
 }
 
 .chapters {
@@ -163,6 +173,51 @@ header h1 {
   background: #f0f0f0;
   padding: 0.2rem 0.5rem;
   border-radius: 12px;
+}
+
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.chapter-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.chapter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.chapter-number {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a73e8;
+  background: #e8f0fe;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  flex-shrink: 0;
+}
+
+.chapter-content h4 {
+  font-size: 1rem;
+  color: #1a73e8;
+  margin-bottom: 0.15rem;
+}
+
+.chapter-content p {
+  font-size: 0.82rem;
+  color: #777;
 }
 
 footer {
