@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build landing page
+        run: npx vite build
+
+      - name: Build CIE Biology 9700 slides
+        run: |
+          npx slidev build slides/cie-9700/slides.md \
+            --base /slidev-exam-ppts/slides/cie-9700/ \
+            --out ../../dist/slides/cie-9700
