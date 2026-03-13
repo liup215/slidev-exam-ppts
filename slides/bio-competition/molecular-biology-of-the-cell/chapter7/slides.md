@@ -52,32 +52,31 @@ title: 基因表达调控 | Gene Expression Control
 </div>
 
 ---
-
 src: ./01-an-overview-of-gene-control.md
-
---- 
-
-src: "02-control-of-transcription.md"
-
----
-src: "03-transcription-regulators.md"
-
 ---
 
-src: "04-specialized-cell-types.md"
-
+---
+src: ./02-control-of-transcription.md
 ---
 
-src: "05-cell-memory.md"
-
+---
+src: ./03-transcription-regulators.md
 ---
 
-src: "06-post-transcriptional-controls.md"
-
+---
+src: ./04-specialized-cell-types.md
 ---
 
-src: "07-noncoding-rnas.md"
+---
+src: ./05-cell-memory.md
+---
 
+---
+src: ./06-post-transcriptional-controls.md
+---
+
+---
+src: ./07-noncoding-rnas.md
 ---
 
 # 结束页 | Thank You
