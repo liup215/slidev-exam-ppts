@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: linear-gradient(135deg, #0A2540 0%, #001a2d 100%)
+background: /slides/bio-competition/molecular-biology-of-the-cell/chapter7/images/chapter7-gene-expression-cover.png
 class: text-center
 highlighter: shiki
 lineNumbers: false
