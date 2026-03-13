@@ -53,13 +53,30 @@ title: 基因表达调控 | Gene Expression Control
 
 ---
 
-@import "01-an-overview-of-gene-control.md"
-@import "02-control-of-transcription.md"
-@import "03-transcription-regulators.md"
-@import "04-specialized-cell-types.md"
-@import "05-cell-memory.md"
-@import "06-post-transcriptional-controls.md"
-@import "07-noncoding-rnas.md"
+src: ./01-an-overview-of-gene-control.md
+
+--- 
+
+src: "02-control-of-transcription.md"
+
+---
+src: "03-transcription-regulators.md"
+
+---
+
+src: "04-specialized-cell-types.md"
+
+---
+
+src: "05-cell-memory.md"
+
+---
+
+src: "06-post-transcriptional-controls.md"
+
+---
+
+src: "07-noncoding-rnas.md"
 
 ---
 
