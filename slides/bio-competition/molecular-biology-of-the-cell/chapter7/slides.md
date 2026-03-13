@@ -11,6 +11,7 @@ drawings:
   persist: false
 transition: slide-left
 title: 基因表达调控 | Gene Expression Control
+routerMode: hash
 ---
 
 # Control of Gene Expression

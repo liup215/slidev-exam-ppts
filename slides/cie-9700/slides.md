@@ -11,6 +11,7 @@ drawings:
   persist: false
 transition: slide-left
 title: CIE Biology 9700 - Chapter 1
+routerMode: hash
 ---
 
 # CIE Biology 9700
