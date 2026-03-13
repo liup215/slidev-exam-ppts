@@ -131,6 +131,7 @@ const examBoards: ExamBoard[] = [
           { id: 'bc-cell-1', number: 1, title: '细胞结构与功能', subtitle: 'Cell Structure & Function', url: '#' },
           { id: 'bc-cell-2', number: 2, title: '细胞分裂', subtitle: 'Cell Division', url: '#' },
           { id: 'bc-cell-3', number: 3, title: '细胞信号传导', subtitle: 'Cell Signaling', url: '#' },
+          { id: 'bc-cell-7', number: 7, title: '基因表达调控', subtitle: 'Gene Expression Control', url: `${base}slides/bio-competition/molecular-biology-of-the-cell/chapter7/` },
         ],
       },
       {

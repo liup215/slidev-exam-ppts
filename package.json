@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && npm run build:slides",
-    "build:slides": "npm run build:slides:ch1 && npm run build:slides:ch2",
+    "build:slides": "npm run build:slides:ch1 && npm run build:slides:ch2 && npm run build:slides:molbio-ch7",
     "build:slides:ch1": "slidev build slides/cie-9700/slides.md --base /slidev-exam-ppts/slides/cie-9700/ --out ../../dist/slides/cie-9700",
     "build:slides:ch2": "slidev build slides/cie-9700/chapter-2/slides.md --base /slidev-exam-ppts/slides/cie-9700/chapter-2/ --out ../../../dist/slides/cie-9700/chapter-2",
+    "build:slides:molbio-ch7": "slidev build slides/bio-competition/molecular-biology-of-the-cell/chapter7/slides.md --base /slidev-exam-ppts/slides/bio-competition/molecular-biology-of-the-cell/chapter7/ --out ../../../../dist/slides/bio-competition/molecular-biology-of-the-cell/chapter7",
     "preview": "vite preview"
   },
   "dependencies": {
