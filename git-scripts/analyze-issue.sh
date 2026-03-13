@@ -14,7 +14,7 @@ ISSUE_URL="$1"
 PROMPT="${2:-What is the root cause of this issue?}"
 
 # Ask Cline for its analysis, showing only the summary
-cline -y "$PROMPT: $ISSUE_URL" --mode act -F json | \
+cline -y "$PROMPT: $ISSUE_URL" -F json | \
     sed -n '/^{/,$p' | \
     jq -r 'select(.say == "completion_result") | .text' | \
     sed 's/\\n/\n/g'
