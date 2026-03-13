@@ -35,3 +35,9 @@ jobs:
           npx slidev build slides/cie-9700/chapter-2/slides.md \
             --base /slidev-exam-ppts/slides/cie-9700/chapter-2/ \
             --out ../../../dist/slides/cie-9700/chapter-2
+
+      - name: Build Bio Competition Molecular Biology Chapter 7 slides
+        run: |
+          npx slidev build slides/bio-competition/molecular-biology-of-the-cell/chapter7/slides.md \
+            --base /slidev-exam-ppts/slides/bio-competition/molecular-biology-of-the-cell/chapter7/ \
+            --out ../../../../dist/slides/bio-competition/molecular-biology-of-the-cell/chapter7
