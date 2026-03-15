@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Enzymes - 酶 | 交互式学习手册</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { font-family: system-ui, -apple-system, sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #0d9488; border-radius: 4px; }
+        html { scroll-behavior: smooth; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+        .knowledge-card { transition: all 0.3s ease; }
+        .knowledge-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .objective-checkbox:checked + div { background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%); border-color: #0d9488; }
+        .quiz-option { transition: all 0.2s ease; cursor: pointer; }
+        .quiz-option:hover:not(.selected):not(.correct):not(.incorrect) { background-color: #f0fdfa; border-color: #0d9488; }
+        .quiz-option.selected { border-color: #0d9488; background-color: #f0fdfa; }
+        .quiz-option.correct { background-color: #d1fae5; border-color: #059669; }
+        .quiz-option.incorrect { background-color: #fee2e2; border-color: #dc2626; }
+        .progress-bar { transition: width 0.5s ease; }
+        .nav-link.active { background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%); color: white; }
+        .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .collapsible-content.expanded { max-height: 3000px; }
+        .hero-pattern { background-image: radial-gradient(circle at 20% 50%, rgba(13,148,136,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(8,145,178,0.1) 0%, transparent 50%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white font-bold text-lg">E</div>
+                    <div>
+                        <h1 class="text-lg font-bold text-slate-800">Chapter 3: Enzymes</h1>
+                        <p class="text-xs text-slate-500">酶 - 交互式学习手册</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#objectives" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors">学习目标</a>
+                    <a href="#knowledge" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors">知识点</a>
+                    <a href="#applications" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors">实际应用</a>
+                    <a href="#quiz" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors">互动测验</a>
+                </div>
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs text-slate-500">学习进度</p>
+                    <div class="w-32 h-2 bg-slate-200 rounded-full mt-1">
+                        <div id="overall-progress" class="progress-bar h-full bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern pt-24 pb-12 bg-gradient-to-br from-slate-50 via-teal-50/30 to-cyan-50/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in-up">
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-teal-100 text-teal-800 text-sm font-medium mb-6">CIE AS Biology</div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
+                    <span class="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">Enzymes</span>
+                    <span class="block text-2xl md:text-3xl lg:text-4xl font-medium text-slate-600 mt-2">酶 - 生命的催化剂</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-lg text-slate-600 mb-8">探索生物体内神奇的催化剂，了解酶如何以惊人的效率加速生命活动中的化学反应。</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#objectives" class="px-8 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all">开始学习</a>
+                    <a href="#quiz" class="px-8 py-3 bg-white text-teal-700 border-2 border-teal-200 rounded-xl font-medium hover:bg-teal-50 transition-all">挑战测验</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Objectives Section -->
+    <section id="objectives" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">学习目标</h2>
+                <p class="text-slate-600">完成本章学习后，你将能够：</p>
+                <div class="mt-4 inline-flex items-center px-4 py-2 bg-teal-50 rounded-lg">
+                    <span class="text-teal-700 font-medium">已完成: </span>
+                    <span id="objectives-count" class="ml-2 text-teal-800 font-bold">0/9</span>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="objectives-list"></div>
+        </div>
+    </section>
+
+    <!-- Knowledge Points Section -->
+    <section id="knowledge" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">知识点讲解</h2>
+                <p class="text-slate-600">点击卡片展开详细内容</p>
+            </div>
+            <div class="space-y-4" id="knowledge-cards"></div>
+        </div>
+    </section>
+
+    <!-- Real-world Applications Section -->
+    <section id="applications" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">实际应用</h2>
+                <p class="text-slate-600">酶在自然界和工业中的精彩应用</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="knowledge-card bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center text-white text-2xl">🐞</div>
+                        <h3 class="ml-4 text-xl font-bold text-slate-900">炮甲虫的防御机制</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4">炮甲虫利用酶催化反应产生化学喷雾进行防御。其腹部储存过氧化氢和氢醌，在受到威胁时，过氧化氢酶和过氧化物酶将反应速度提高数百万倍，产生沸腾的喷雾。</p>
+                    <div class="bg-white/70 rounded-lg p-4">
+                        <p class="text-sm text-slate-700"><strong>关键酶：</strong>过氧化氢酶 (Catalase)、过氧化物酶 (Peroxidase)</p>
