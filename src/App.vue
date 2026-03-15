@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <!-- 调试提示：确认 App.vue 已加载 -->
+    <div style="background: #ff6b6b; color: white; padding: 10px; text-align: center; font-weight: bold;">
+      ✅ App.vue 组件已加载
+    </div>
     <header>
       <h1>📚 考纲幻灯片</h1>
       <p class="subtitle">在线考试考纲幻灯片展示</p>
