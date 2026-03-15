@@ -23,6 +23,7 @@
     "@slidev/cli": "^0.49.0",
     "@types/markdown-it": "^14.1.2",
     "@vitejs/plugin-vue": "^5.0.0",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vite-plugin-static-copy": "^3.3.0"
   }
 }

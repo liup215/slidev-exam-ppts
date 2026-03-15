@@ -149,6 +149,7 @@ onMounted(loadNote)
 </script>
 
 <style scoped>
+/* ===== 基础布局 ===== */
 .note-container {
   max-width: 900px;
   margin: 0 auto;
@@ -158,46 +159,56 @@ onMounted(loadNote)
   flex-direction: column;
 }
 
+/* ===== 头部区域 ===== */
 .note-header {
   margin-bottom: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
 }
 
+/* 面包屑导航 */
 .breadcrumb {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
   font-size: 0.9rem;
   flex-wrap: wrap;
 }
 
 .breadcrumb-item {
-  background: none;
+  background: rgba(255, 255, 255, 0.15);
   border: none;
   cursor: pointer;
-  color: #1a73e8;
-  padding: 0.25rem 0.4rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  transition: background 0.15s;
+  color: rgba(255, 255, 255, 0.95);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
 }
 
 .breadcrumb-item:hover:not(.active) {
-  background: #e8f0fe;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
 }
 
 .breadcrumb-item.active {
-  color: #444;
+  color: #fff;
   cursor: default;
   font-weight: 600;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .breadcrumb-sep {
-  color: #999;
-  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
   user-select: none;
 }
 
+/* 操作按钮 */
 .note-actions {
   display: flex;
   gap: 0.75rem;
@@ -207,56 +218,75 @@ onMounted(loadNote)
 .action-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: white;
-  color: #333;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
   cursor: pointer;
   font-size: 0.9rem;
   text-decoration: none;
-  transition: all 0.15s;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
 }
 
 .action-btn:hover {
-  background: #f5f5f5;
-  border-color: #ccc;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .ppt-btn {
-  background: #1a73e8;
-  color: white;
-  border-color: #1a73e8;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-color: transparent;
 }
 
 .ppt-btn:hover {
-  background: #1557b0;
-  border-color: #1557b0;
+  background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
 }
 
+/* ===== 内容区域 ===== */
 .note-content {
   flex: 1;
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 20px 25px -5px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
+.note-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+/* ===== 加载/错误/空状态 ===== */
 .loading, .error, .empty {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 4rem 2rem;
   color: #666;
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #1a73e8;
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-right: 4px solid #764ba2;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.5rem;
 }
 
 @keyframes spin {
@@ -264,161 +294,376 @@ onMounted(loadNote)
   100% { transform: rotate(360deg); }
 }
 
-.error h3, .empty h3 {
-  color: #d93025;
-  margin-bottom: 0.5rem;
+.error h3 {
+  color: #e74c3c;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
 }
 
 .empty h3 {
-  color: #666;
+  color: #667eea;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
 }
 
 .retry-btn {
-  margin-top: 1rem;
-  padding: 0.5rem 1.5rem;
-  background: #1a73e8;
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 }
 
 .retry-btn:hover {
-  background: #1557b0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
+/* ===== 页脚 ===== */
 .note-footer {
   text-align: center;
   margin-top: 3rem;
-  color: #999;
+  padding: 1.5rem;
+  color: #888;
   font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
 }
 
 .note-footer a {
-  color: #1a73e8;
+  color: #667eea;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
-/* Markdown content styles */
+.note-footer a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* ===== Markdown 内容样式 ===== */
+.markdown-body {
+  color: #2d3748;
+  line-height: 1.8;
+}
+
+/* 标题样式 */
 .markdown-body :deep(h1) {
-  font-size: 2rem;
-  color: #1a73e8;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e8f0fe;
+  font-size: 2.25rem;
+  color: #1a202c;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%) 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .markdown-body :deep(h2) {
-  font-size: 1.5rem;
-  color: #333;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  color: #2d3748;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1rem;
+  border-left: 4px solid #667eea;
+  font-weight: 600;
 }
 
 .markdown-body :deep(h3) {
-  font-size: 1.25rem;
-  color: #444;
+  font-size: 1.35rem;
+  color: #4a5568;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.markdown-body :deep(h3)::before {
+  content: '▸';
+  color: #764ba2;
+  font-size: 1rem;
+}
+
+.markdown-body :deep(h4) {
+  font-size: 1.15rem;
+  color: #4a5568;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
+  font-weight: 600;
 }
 
+/* 段落 */
 .markdown-body :deep(p) {
-  line-height: 1.8;
-  margin-bottom: 1rem;
-  color: #333;
+  line-height: 1.9;
+  margin-bottom: 1.25rem;
+  color: #4a5568;
 }
 
+/* 列表 */
 .markdown-body :deep(ul), .markdown-body :deep(ol) {
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.75rem;
 }
 
-.markdown-body :deep(li) {
-  margin-bottom: 0.5rem;
-  line-height: 1.6;
+.markdown-body :deep(ul) {
+  list-style: none;
 }
 
+.markdown-body :deep(ul li) {
+  position: relative;
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+  padding-left: 0.5rem;
+}
+
+.markdown-body :deep(ul li::before) {
+  content: '•';
+  color: #667eea;
+  font-weight: bold;
+  position: absolute;
+  left: -1.25rem;
+  font-size: 1.2rem;
+}
+
+.markdown-body :deep(ol li) {
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+  padding-left: 0.5rem;
+}
+
+.markdown-body :deep(ol li::marker) {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* 代码样式 */
 .markdown-body :deep(code) {
-  background: #f5f5f5;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: 'Monaco', 'Menlo', monospace;
-  font-size: 0.9em;
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  font-size: 0.88em;
+  color: #764ba2;
+  border: 1px solid #e2e8f0;
 }
 
 .markdown-body :deep(pre) {
-  background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  padding: 1.25rem;
+  border-radius: 12px;
   overflow-x: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.markdown-body :deep(pre::before) {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(90deg, #ff5f56 0%, #ff5f56 12px, #ffbd2e 12px, #ffbd2e 24px, #27c93f 24px, #27c93f 36px, transparent 36px);
+  border-radius: 12px 12px 0 0;
+  opacity: 0.8;
 }
 
 .markdown-body :deep(pre code) {
   background: none;
   padding: 0;
+  color: #e2e8f0;
+  border: none;
+  font-size: 0.9em;
+  line-height: 1.6;
+  display: block;
+  margin-top: 20px;
 }
 
+/* 引用块 */
 .markdown-body :deep(blockquote) {
-  border-left: 4px solid #1a73e8;
-  padding-left: 1rem;
-  margin-left: 0;
-  color: #666;
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  border-left: 4px solid #667eea;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 12px 12px 0;
+  color: #4a5568;
   font-style: italic;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+.markdown-body :deep(blockquote p:last-child) {
+  margin-bottom: 0;
+}
+
+/* 表格样式 */
 .markdown-body :deep(table) {
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.markdown-body :deep(th), .markdown-body :deep(td) {
-  border: 1px solid #ddd;
-  padding: 0.5rem;
+.markdown-body :deep(thead) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .markdown-body :deep(th) {
-  background: #f8f9fa;
+  color: white;
   font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
 }
 
+.markdown-body :deep(td) {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #4a5568;
+}
+
+.markdown-body :deep(tr:nth-child(even)) {
+  background: #f7fafc;
+}
+
+.markdown-body :deep(tr:hover) {
+  background: #edf2f7;
+  transition: background 0.2s;
+}
+
+.markdown-body :deep(tr:last-child td) {
+  border-bottom: none;
+}
+
+/* 图片 */
 .markdown-body :deep(img) {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+  display: block;
 }
 
+/* 链接 */
 .markdown-body :deep(a) {
-  color: #1a73e8;
+  color: #667eea;
   text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
 }
 
 .markdown-body :deep(a:hover) {
-  text-decoration: underline;
+  color: #764ba2;
+  border-bottom-color: #764ba2;
 }
 
+/* 水平线 */
 .markdown-body :deep(hr) {
   border: none;
-  border-top: 1px solid #eee;
-  margin: 2rem 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #e2e8f0 20%, #e2e8f0 80%, transparent 100%);
+  margin: 2.5rem 0;
 }
 
-@media (max-width: 600px) {
+/* 强调文本 */
+.markdown-body :deep(strong) {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.markdown-body :deep(em) {
+  color: #667eea;
+}
+
+/* 数学公式 */
+.markdown-body :deep(.katex) {
+  font-size: 1.1em;
+}
+
+.markdown-body :deep(.katex-display) {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f7fafc;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 768px) {
   .note-container {
     padding: 1rem;
   }
   
+  .note-header {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
   .note-content {
-    padding: 1rem;
+    padding: 1.5rem;
+    border-radius: 16px;
   }
   
   .markdown-body :deep(h1) {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
   
   .markdown-body :deep(h2) {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
+  }
+  
+  .markdown-body :deep(h3) {
+    font-size: 1.15rem;
+  }
+  
+  .breadcrumb {
+    font-size: 0.8rem;
+  }
+  
+  .breadcrumb-item {
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .note-header {
+    padding: 1rem;
+  }
+  
+  .note-content {
+    padding: 1.25rem;
+  }
+  
+  .action-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .markdown-body :deep(pre) {
+    padding: 1rem;
+    font-size: 0.85em;
+  }
+  
+  .markdown-body :deep(table) {
+    font-size: 0.9rem;
+  }
+  
+  .markdown-body :deep(th),
+  .markdown-body :deep(td) {
+    padding: 0.625rem 0.75rem;
   }
 }
 </style>
