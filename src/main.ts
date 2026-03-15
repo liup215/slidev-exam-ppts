@@ -1,13 +1,13 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomePage from './HomePage.vue'
+import App from './App.vue'
 import NoteViewer from './components/NoteViewer.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomePage
+    component: App
   },
   {
     path: '/notes/:board/:group/:chapter',
