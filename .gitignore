@@ -18,3 +18,6 @@ downloads/
 tmp/
 temp/
 *.tmp
+
+# Content slices - source material, not final output
+slices/
