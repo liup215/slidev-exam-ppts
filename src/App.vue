@@ -1,9 +1,5 @@
 <template>
   <div class="container">
-    <!-- 调试提示：确认 App.vue 已加载 -->
-    <div style="background: #ff6b6b; color: white; padding: 10px; text-align: center; font-weight: bold;">
-      ✅ App.vue 组件已加载
-    </div>
     <header>
       <h1>📚 考纲幻灯片</h1>
       <p class="subtitle">在线考试考纲幻灯片展示</p>
@@ -67,31 +63,18 @@
         <!-- Level 3: Chapter list -->
         <div v-else key="chapters">
           <div class="chapters-grid">
-            <div
+            <a
               v-for="chapter in currentGroup.chapters"
               :key="chapter.id"
-              class="chapter-card-wrapper"
+              :href="chapter.url"
+              class="chapter-card"
             >
-              <a
-                :href="chapter.url"
-                class="chapter-card"
-                :class="{ 'has-ppt': chapter.url && chapter.url !== '#' }"
-              >
-                <div class="chapter-number">Ch.{{ chapter.number }}</div>
-                <div class="chapter-content">
-                  <h4>{{ chapter.title }}</h4>
-                  <p>{{ chapter.subtitle }}</p>
-                </div>
-              </a>
-              <button
-                v-if="chapterHasNote(chapter)"
-                class="note-btn"
-                @click="openNote(chapter)"
-                title="查看笔记"
-              >
-                📄 笔记
-              </button>
-            </div>
+              <div class="chapter-number">Ch.{{ chapter.number }}</div>
+              <div class="chapter-content">
+                <h4>{{ chapter.title }}</h4>
+                <p>{{ chapter.subtitle }}</p>
+              </div>
+            </a>
           </div>
         </div>
       </Transition>
@@ -105,9 +88,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
 
 interface Chapter {
   id: string
@@ -151,7 +131,6 @@ const examBoards: ExamBoard[] = [
           { id: 'bc-cell-1', number: 1, title: '细胞结构与功能', subtitle: 'Cell Structure & Function', url: '#' },
           { id: 'bc-cell-2', number: 2, title: '细胞分裂', subtitle: 'Cell Division', url: '#' },
           { id: 'bc-cell-3', number: 3, title: '细胞信号传导', subtitle: 'Cell Signaling', url: '#' },
-          { id: 'bc-cell-7', number: 7, title: '基因表达调控', subtitle: 'Gene Expression Control', url: `${base}slides/bio-competition/molecular-biology-of-the-cell/chapter7/` },
         ],
       },
       {
@@ -287,49 +266,6 @@ const examBoards: ExamBoard[] = [
 
 const currentBoard = ref<ExamBoard | null>(null)
 const currentGroup = ref<Group | null>(null)
-
-// Cache for note existence checks
-const noteExistenceCache = ref<Record<string, boolean>>({})
-
-// Pre-defined list of available notes (built at build time)
-const availableNotes = [
-  '/notes/cie-9700/chapter-1.md',
-  '/notes/cie-9700/chapter-2.md',
-  '/notes/cie-9700/chapter-3.md',
-  '/notes/cie-9700/chapter-4.md',
-  '/notes/cie-9700/chapter-5.md',
-]
-
-function chapterHasNote(chapter: Chapter): boolean {
-  if (!currentBoard.value || !currentGroup.value) return false
-  
-  const boardId = currentBoard.value.id
-  const groupId = currentGroup.value.id
-  const chapterId = chapter.id
-  
-  // Check if note exists at path: /notes/{board}/{group}/{chapter}.md
-  const notePath = `/notes/${boardId}/${groupId}/${chapterId}.md`
-  const altPath = `/notes/${boardId}/${chapterId}.md`
-  
-  // Also check for chapter-{number}.md pattern (e.g., chapter-1.md)
-  const chapterNum = chapterId.match(/ch(\d+)$/i)?.[1]
-  const chapterPath = chapterNum ? `/notes/${boardId}/chapter-${chapterNum}.md` : null
-  
-  return availableNotes.includes(notePath) || 
-         availableNotes.includes(altPath) || 
-         (chapterPath && availableNotes.includes(chapterPath))
-}
-
-function openNote(chapter: Chapter) {
-  if (!currentBoard.value || !currentGroup.value) return
-  
-  const boardId = currentBoard.value.id
-  const groupId = currentGroup.value.id
-  const chapterId = chapter.id
-  
-  // Navigate to note viewer using Vue Router
-  router.push(`/notes/${boardId}/${groupId}/${chapterId}`)
-}
 
 function selectBoard(board: ExamBoard) {
   currentBoard.value = board
@@ -591,34 +527,6 @@ header h1 {
 .chapter-content p {
   font-size: 0.82rem;
   color: #777;
-}
-
-/* Chapter card wrapper with note button */
-.chapter-card-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.note-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  padding: 0.4rem 0.8rem;
-  background: #f0f7ff;
-  border: 1px solid #1a73e8;
-  border-radius: 8px;
-  color: #1a73e8;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  align-self: flex-start;
-}
-
-.note-btn:hover {
-  background: #1a73e8;
-  color: white;
 }
 
 /* Fade transition */
