@@ -63,18 +63,31 @@
         <!-- Level 3: Chapter list -->
         <div v-else key="chapters">
           <div class="chapters-grid">
-            <a
+            <div
               v-for="chapter in currentGroup.chapters"
               :key="chapter.id"
-              :href="chapter.url"
-              class="chapter-card"
+              class="chapter-card-wrapper"
             >
-              <div class="chapter-number">Ch.{{ chapter.number }}</div>
-              <div class="chapter-content">
-                <h4>{{ chapter.title }}</h4>
-                <p>{{ chapter.subtitle }}</p>
-              </div>
-            </a>
+              <a
+                :href="chapter.url"
+                class="chapter-card"
+                :class="{ 'has-ppt': chapter.url && chapter.url !== '#' }"
+              >
+                <div class="chapter-number">Ch.{{ chapter.number }}</div>
+                <div class="chapter-content">
+                  <h4>{{ chapter.title }}</h4>
+                  <p>{{ chapter.subtitle }}</p>
+                </div>
+              </a>
+              <button
+                v-if="chapterHasNote(chapter)"
+                class="note-btn"
+                @click="openNote(chapter)"
+                title="查看笔记"
+              >
+                📄 笔记
+              </button>
+            </div>
           </div>
         </div>
       </Transition>
@@ -267,6 +280,40 @@ const examBoards: ExamBoard[] = [
 
 const currentBoard = ref<ExamBoard | null>(null)
 const currentGroup = ref<Group | null>(null)
+
+// Import all markdown files to check which chapters have notes
+const noteModules = import.meta.glob('/notes/**/*.md', { eager: true, query: '?raw', import: 'default' })
+
+function chapterHasNote(chapter: Chapter): boolean {
+  if (!currentBoard.value || !currentGroup.value) return false
+  
+  const boardId = currentBoard.value.id
+  const groupId = currentGroup.value.id
+  const chapterId = chapter.id
+  
+  // Check if note exists at path: /notes/{board}/{group}/{chapter}.md
+  const notePath = `/notes/${boardId}/${groupId}/${chapterId}.md`
+  const altPath = `/notes/${boardId}/${chapterId}.md`
+  
+  // Also check for chapter-{number}.md pattern (e.g., chapter-1.md)
+  const chapterNum = chapterId.match(/ch(\d+)$/i)?.[1]
+  const chapterPath = chapterNum ? `/notes/${boardId}/chapter-${chapterNum}.md` : null
+  
+  return notePath in noteModules || 
+         altPath in noteModules || 
+         (chapterPath && chapterPath in noteModules)
+}
+
+function openNote(chapter: Chapter) {
+  if (!currentBoard.value || !currentGroup.value) return
+  
+  const boardId = currentBoard.value.id
+  const groupId = currentGroup.value.id
+  const chapterId = chapter.id
+  
+  // Navigate to note viewer
+  window.location.href = `${base}#/notes/${boardId}/${groupId}/${chapterId}`
+}
 
 function selectBoard(board: ExamBoard) {
   currentBoard.value = board
@@ -528,6 +575,34 @@ header h1 {
 .chapter-content p {
   font-size: 0.82rem;
   color: #777;
+}
+
+/* Chapter card wrapper with note button */
+.chapter-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.note-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.8rem;
+  background: #f0f7ff;
+  border: 1px solid #1a73e8;
+  border-radius: 8px;
+  color: #1a73e8;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  align-self: flex-start;
+}
+
+.note-btn:hover {
+  background: #1a73e8;
+  color: white;
 }
 
 /* Fade transition */

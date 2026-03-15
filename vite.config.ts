@@ -7,4 +7,8 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
+  assetsInclude: ['**/*.md'],
+  optimizeDeps: {
+    include: ['markdown-it', 'prismjs', 'katex']
+  }
 })
