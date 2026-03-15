@@ -284,8 +284,17 @@ const examBoards: ExamBoard[] = [
 const currentBoard = ref<ExamBoard | null>(null)
 const currentGroup = ref<Group | null>(null)
 
-// Import all markdown files to check which chapters have notes
-const noteModules = import.meta.glob('/notes/**/*.md', { eager: true, query: '?raw', import: 'default' })
+// Cache for note existence checks
+const noteExistenceCache = ref<Record<string, boolean>>({})
+
+// Pre-defined list of available notes (built at build time)
+const availableNotes = [
+  '/notes/cie-9700/chapter-1.md',
+  '/notes/cie-9700/chapter-2.md',
+  '/notes/cie-9700/chapter-3.md',
+  '/notes/cie-9700/chapter-4.md',
+  '/notes/cie-9700/chapter-5.md',
+]
 
 function chapterHasNote(chapter: Chapter): boolean {
   if (!currentBoard.value || !currentGroup.value) return false
@@ -302,9 +311,9 @@ function chapterHasNote(chapter: Chapter): boolean {
   const chapterNum = chapterId.match(/ch(\d+)$/i)?.[1]
   const chapterPath = chapterNum ? `/notes/${boardId}/chapter-${chapterNum}.md` : null
   
-  return notePath in noteModules || 
-         altPath in noteModules || 
-         (chapterPath && chapterPath in noteModules)
+  return availableNotes.includes(notePath) || 
+         availableNotes.includes(altPath) || 
+         (chapterPath && availableNotes.includes(chapterPath))
 }
 
 function openNote(chapter: Chapter) {
