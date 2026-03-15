@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "在线考试考纲幻灯片展示网站",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && npm run build:slides",
+    "dev": "vitepress dev docs",
+    "dev:slides": "slidev slides/cie-9700/slides.md",
+    "build": "npm run build:vitepress && npm run build:slides",
+    "build:vitepress": "vitepress build docs",
     "build:slides": "npm run build:slides:ch1 && npm run build:slides:ch2 && npm run build:slides:molbio-ch7",
-    "build:slides:ch1": "slidev build slides/cie-9700/slides.md --base /slidev-exam-ppts/slides/cie-9700/ --out ../../dist/slides/cie-9700",
-    "build:slides:ch2": "slidev build slides/cie-9700/chapter-2/slides.md --base /slidev-exam-ppts/slides/cie-9700/chapter-2/ --out ../../../dist/slides/cie-9700/chapter-2",
-    "build:slides:molbio-ch7": "slidev build slides/bio-competition/molecular-biology-of-the-cell/chapter7/slides.md --base /slidev-exam-ppts/slides/bio-competition/molecular-biology-of-the-cell/chapter7/ --out ../../../../dist/slides/bio-competition/molecular-biology-of-the-cell/chapter7",
-    "preview": "vite preview"
+    "build:slides:ch1": "npx slidev build slides/cie-9700/slides.md --base /slidev-exam-ppts/slides/cie-9700/ --out docs/.vitepress/dist/slides/cie-9700",
+    "build:slides:ch2": "npx slidev build slides/cie-9700/chapter-2/slides.md --base /slidev-exam-ppts/slides/cie-9700/chapter-2/ --out docs/.vitepress/dist/slides/cie-9700/chapter-2",
+    "build:slides:molbio-ch7": "npx slidev build slides/bio-competition/molecular-biology-of-the-cell/chapter7/slides.md --base /slidev-exam-ppts/slides/bio-competition/molecular-biology-of-the-cell/chapter7/ --out docs/.vitepress/dist/slides/bio-competition/molecular-biology-of-the-cell/chapter7",
+    "preview": "vitepress preview docs",
+    "preview:slides": "slidev slides/cie-9700/slides.md"
   },
   "dependencies": {
     "@slidev/theme-seriph": "^0.25.0",
@@ -24,6 +27,7 @@
     "@types/markdown-it": "^14.1.2",
     "@vitejs/plugin-vue": "^5.0.0",
     "vite": "^5.0.0",
-    "vite-plugin-static-copy": "^3.3.0"
+    "vite-plugin-static-copy": "^3.3.0",
+    "vitepress": "^1.6.3"
   }
 }
