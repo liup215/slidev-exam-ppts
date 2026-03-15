@@ -33,6 +33,9 @@ jobs:
       - name: Build landing page
         run: npx vite build
 
+      - name: Copy notes to dist
+        run: cp -r notes dist/notes
+
       - name: Build CIE Biology 9700 slides
         run: |
           npx slidev build slides/cie-9700/slides.md \
