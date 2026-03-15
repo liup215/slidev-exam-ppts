@@ -23,7 +23,12 @@ const router = createRouter({
 })
 
 const app = createApp({
-  template: '<router-view></router-view>'
+  template: `<div>
+    <div style="background: #4ecdc4; color: white; padding: 10px; text-align: center; font-weight: bold;">
+      ✅ Router-view 根组件已加载
+    </div>
+    <router-view></router-view>
+  </div>`
 })
 app.use(router)
 app.mount('#app')
