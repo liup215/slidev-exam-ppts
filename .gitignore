@@ -4,3 +4,17 @@ dist
 *.local
 
 .books
+# Raw materials - downloaded from cloud drive, not committed
+data/
+raw-materials/
+downloads/
+*.pdf
+*.docx
+*.doc
+*.ppt
+*.pptx
+
+# Temporary files
+tmp/
+temp/
+*.tmp
