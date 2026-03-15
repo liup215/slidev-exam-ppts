@@ -281,9 +281,13 @@ const examBoards: ExamBoard[] = [
 
 // ── Determine which note files exist at build-time via Vite glob
 const noteModules = import.meta.glob('/notes/**/*.md', { query: '?raw', import: 'default' })
-const availableNotes = new Set(
-  Object.keys(noteModules).map((p) => p.replace('/notes/', '').replace('.md', '')),
-)
+
+/** Normalize a glob path like '/notes/a/b/c.md' → 'a/b/c' */
+function toNoteKey(globPath: string): string {
+  return globPath.replace(/^\/notes\//, '').replace(/\.md$/, '')
+}
+
+const availableNotes = new Set(Object.keys(noteModules).map(toNoteKey))
 
 function hasNote(boardId: string, groupId: string, chapterId: string): boolean {
   return availableNotes.has(`${boardId}/${groupId}/${chapterId}`)

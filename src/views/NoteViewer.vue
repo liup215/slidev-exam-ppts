@@ -75,10 +75,10 @@ function renderMath(tex: string, displayMode: boolean): string {
 
 // ── Simple math pre-processing: replace $$...$$ and $...$ with KaTeX HTML
 function renderMathInHtml(html: string): string {
-  // Display math: $$...$$
+  // Display math: $$...$$  (processed first so inline $ regex sees none left)
   html = html.replace(/\$\$([\s\S]+?)\$\$/g, (_, tex) => renderMath(tex, true))
-  // Inline math: $...$  (not preceded/followed by another $)
-  html = html.replace(/(?<!\$)\$(?!\$)([\s\S]+?)(?<!\$)\$(?!\$)/g, (_, tex) => renderMath(tex, false))
+  // Inline math: $...$  (no $ or newline inside, since $$ already consumed above)
+  html = html.replace(/\$([^$\n]+?)\$/g, (_, tex) => renderMath(tex, false))
   return html
 }
 
