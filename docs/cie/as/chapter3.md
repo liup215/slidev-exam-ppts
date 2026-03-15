@@ -5,38 +5,38 @@
 本文档包含以下示意图，帮助理解酶的相关概念：
 
 ### 基础概念
-- ![酶的三维结构](../../images/cie-9700/as/chapter3/enzyme_structure.png) - 酶作为球状蛋白质的结构
-- ![锁钥假说](../../images/cie-9700/as/chapter3/lock_and_key.png) - 酶与底物的锁钥模型
-- ![诱导契合假说](../../images/cie-9700/as/chapter3/induced_fit.png) - 酶与底物的诱导契合模型
-- ![酶-底物复合物](../../images/cie-9700/as/chapter3/enzyme_substrate_complex.png) - 酶-底物复合物形成过程
+- ![酶的三维结构](/images/cie-9700/as/chapter3/enzyme_structure.png) - 酶作为球状蛋白质的结构
+- ![锁钥假说](/images/cie-9700/as/chapter3/lock_and_key.png) - 酶与底物的锁钥模型
+- ![诱导契合假说](/images/cie-9700/as/chapter3/induced_fit.png) - 酶与底物的诱导契合模型
+- ![酶-底物复合物](/images/cie-9700/as/chapter3/enzyme_substrate_complex.png) - 酶-底物复合物形成过程
 
 ### 酶的特性与机制
-- ![溶菌酶](../../images/cie-9700/as/chapter3/lysozyme.png) - 溶菌酶分解细菌细胞壁
-- ![活化能](../../images/cie-9700/as/chapter3/activation_energy.png) - 酶降低活化能的能线图
-- ![炮甲虫防御](../../images/cie-9700/as/chapter3/bombardier_beetle.png) - 炮甲虫的酶催化防御机制
+- ![溶菌酶](/images/cie-9700/as/chapter3/lysozyme.png) - 溶菌酶分解细菌细胞壁
+- ![活化能](/images/cie-9700/as/chapter3/activation_energy.png) - 酶降低活化能的能线图
+- ![炮甲虫防御](/images/cie-9700/as/chapter3/bombardier_beetle.png) - 炮甲虫的酶催化防御机制
 
 ### 实验与测量
-- ![过氧化氢实验](../../images/cie-9700/as/chapter3/hydrogen_peroxide_experiment.png) - 过氧化氢分解实验装置
-- ![反应进程曲线](../../images/cie-9700/as/chapter3/reaction_progress_curve.png) - 酶反应进程曲线
-- ![比色计](../../images/cie-9700/as/chapter3/colorimeter.png) - 比色计测量原理
+- ![过氧化氢实验](/images/cie-9700/as/chapter3/hydrogen_peroxide_experiment.png) - 过氧化氢分解实验装置
+- ![反应进程曲线](/images/cie-9700/as/chapter3/reaction_progress_curve.png) - 酶反应进程曲线
+- ![比色计](/images/cie-9700/as/chapter3/colorimeter.png) - 比色计测量原理
 
 ### 影响因素
-- ![温度影响](../../images/cie-9700/as/chapter3/temperature_effect.png) - 温度对酶活性的影响曲线
-- ![pH影响](../../images/cie-9700/as/chapter3/ph_effect.png) - pH对酶活性的影响曲线
-- ![酶变性](../../images/cie-9700/as/chapter3/denaturation.png) - 高温导致酶变性
-- ![酶浓度](../../images/cie-9700/as/chapter3/enzyme_concentration.png) - 酶浓度与反应速率关系
-- ![底物浓度](../../images/cie-9700/as/chapter3/substrate_concentration.png) - 底物浓度与反应速率关系
+- ![温度影响](/images/cie-9700/as/chapter3/temperature_effect.png) - 温度对酶活性的影响曲线
+- ![pH影响](/images/cie-9700/as/chapter3/ph_effect.png) - pH对酶活性的影响曲线
+- ![酶变性](/images/cie-9700/as/chapter3/denaturation.png) - 高温导致酶变性
+- ![酶浓度](/images/cie-9700/as/chapter3/enzyme_concentration.png) - 酶浓度与反应速率关系
+- ![底物浓度](/images/cie-9700/as/chapter3/substrate_concentration.png) - 底物浓度与反应速率关系
 
 ### 酶动力学
-- ![Vmax和Km](../../images/cie-9700/as/chapter3/vmax_km.png) - 米氏方程曲线与参数
+- ![Vmax和Km](/images/cie-9700/as/chapter3/vmax_km.png) - 米氏方程曲线与参数
 
 ### 酶抑制与调控
-- ![竞争性抑制](../../images/cie-9700/as/chapter3/competitive_inhibition.png) - 竞争性抑制机制
-- ![非竞争性抑制](../../images/cie-9700/as/chapter3/noncompetitive_inhibition.png) - 非竞争性抑制机制
-- ![末端产物抑制](../../images/cie-9700/as/chapter3/end_product_inhibition.png) - 代谢途径的反馈抑制
+- ![竞争性抑制](/images/cie-9700/as/chapter3/competitive_inhibition.png) - 竞争性抑制机制
+- ![非竞争性抑制](/images/cie-9700/as/chapter3/noncompetitive_inhibition.png) - 非竞争性抑制机制
+- ![末端产物抑制](/images/cie-9700/as/chapter3/end_product_inhibition.png) - 代谢途径的反馈抑制
 
 ### 技术应用
-- ![固定化酶](../../images/cie-9700/as/chapter3/immobilized_enzyme.png) - 固定化酶技术
+- ![固定化酶](/images/cie-9700/as/chapter3/immobilized_enzyme.png) - 固定化酶技术
 
 ---
 
@@ -69,7 +69,7 @@
 1. **酶是球状蛋白质**（globular proteins）
    - 它们折叠成**精确的三维形状**
 
-![酶的三维结构](../../images/cie-9700/as/chapter3/enzyme_structure.png)
+![酶的三维结构](/images/cie-9700/as/chapter3/enzyme_structure.png)
 *图：酶作为球状蛋白质的三维结构，显示活性位点*
 
 2. **酶对生命至关重要**
@@ -102,7 +102,7 @@
 
 ## 案例研究：炮甲虫的防御机制
 
-![炮甲虫防御机制](../../images/cie-9700/as/chapter3/bombardier_beetle.png)
+![炮甲虫防御机制](/images/cie-9700/as/chapter3/bombardier_beetle.png)
 *图：炮甲虫使用酶催化反应产生化学喷雾进行防御*
 
 ### 最佳防御是进攻
@@ -142,7 +142,7 @@
 
 ## 实验探究：过氧化氢的分解
 
-![过氧化氢分解实验](../../images/cie-9700/as/chapter3/hydrogen_peroxide_experiment.png)
+![过氧化氢分解实验](/images/cie-9700/as/chapter3/hydrogen_peroxide_experiment.png)
 *图：过氧化氢分解实验装置，显示氧气收集*
 
 ### 实验设计
