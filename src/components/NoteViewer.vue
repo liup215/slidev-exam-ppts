@@ -139,6 +139,7 @@ function goHome() {
 }
 
 function goBack() {
+  // Go back to home (chapter list view)
   router.push('/')
 }
 

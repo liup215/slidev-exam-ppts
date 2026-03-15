@@ -101,6 +101,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 interface Chapter {
   id: string
@@ -311,8 +314,8 @@ function openNote(chapter: Chapter) {
   const groupId = currentGroup.value.id
   const chapterId = chapter.id
   
-  // Navigate to note viewer
-  window.location.href = `${base}#/notes/${boardId}/${groupId}/${chapterId}`
+  // Navigate to note viewer using Vue Router
+  router.push(`/notes/${boardId}/${groupId}/${chapterId}`)
 }
 
 function selectBoard(board: ExamBoard) {
