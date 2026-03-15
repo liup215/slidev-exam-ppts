@@ -35,7 +35,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const base = '/slidev-exam-ppts/'
+const base = './'
 
 const examBoards = [
   {

@@ -19,7 +19,7 @@ const copyNotesPlugin = () => ({
 
 export default defineConfig({
   plugins: [vue(), copyNotesPlugin()],
-  base: '/slidev-exam-ppts/',
+  base: './',
   build: {
     outDir: 'dist',
   },
