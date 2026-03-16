@@ -26,7 +26,8 @@ export default defineConfig({
               items: [
                 { text: 'Chapter 1: Cell Structure', link: '/cie/as/chapter1' },
                 { text: 'Chapter 2: Biological Molecules', link: '/cie/as/chapter2' },
-                { text: 'Chapter 3: Cell Membranes', link: '/cie/as/chapter3' }
+                { text: 'Chapter 3: Cell Membranes', link: '/cie/as/chapter3' },
+                { text: 'Chapter 3: Enzymes Learning Book', link: '/cie/as/chapter3-learning-book.html' }
               ]
             }
           ]
