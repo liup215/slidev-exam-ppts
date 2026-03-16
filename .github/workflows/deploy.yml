@@ -34,6 +34,12 @@ jobs:
       - name: Build VitePress
         run: npx vitepress build docs
 
+      # Copy standalone HTML files to dist
+      - name: Copy standalone HTML files
+        run: |
+          mkdir -p docs/.vitepress/dist/cie/as
+          cp docs/cie/as/chapter3-learning-book.html docs/.vitepress/dist/cie/as/
+
       # Build Slidev slides into the VitePress dist folder using absolute paths
       - name: Build CIE Biology 9700 slides (Chapter 1)
         run: |
